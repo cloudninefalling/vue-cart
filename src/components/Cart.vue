@@ -2,8 +2,10 @@
   <section class="cart">
     <div class="cart__heading">
       <h2 class="cart__heading-title">Ваша корзина</h2>
-      <p class="cart__heading-subtitle">{{ count }} {{ grammarCheck }}</p> 
-      <button @click="clear" class="cart__heading-button-clear">Очистить корзину</button> 
+      <p class="cart__heading-subtitle">{{ count }} {{ grammarCheck }}</p>
+      <button @click="clear" class="cart__heading-button-clear">
+        Очистить корзину
+      </button>
     </div>
     <CartList />
     <CartOption />
@@ -70,21 +72,24 @@
 </style>
 
 <script setup>
-import CartList from './CartList.vue';
-import CartTotal from './CartTotal.vue';
-import CartOption from './CartOption.vue';
-import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { useStore } from "vuex";
+import { computed } from "vue";
+import CartList from "./CartList.vue";
+import CartTotal from "./CartTotal.vue";
+import CartOption from "./CartOption.vue";
 
 const store = useStore();
 
 const count = computed(() => store.getters.cartCount);
-const clear = () =>  {store.commit('clearCart')}
+const clear = () => {
+  store.commit("clearCart");
+};
 
 const grammarCheck = computed(() => {
-  if (count.value >= 5 && count.value <= 20 || count.value % 10 === 0 ) return 'товаров';
-  if (count.value % 10 === 1) return 'товар';
-  if (count.value % 10 >= 5) return 'товаров';
-  else return 'товара';
-})
+  if ((count.value >= 5 && count.value <= 20) || count.value % 10 === 0)
+    return "товаров";
+  if (count.value % 10 === 1) return "товар";
+  if (count.value % 10 >= 5) return "товаров";
+  return "товара";
+});
 </script>

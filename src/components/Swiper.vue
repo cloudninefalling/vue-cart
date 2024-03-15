@@ -3,29 +3,27 @@
     <h2 class="viewed-items__title">Просмотренные товары</h2>
     <div class="viewed-items__controller">
       <button type="button" class="viewed-items__button viewed-items__button_left" @click="prevSlide"></button>
-      <span class="viewed-items__text viewed-items__text_accent">{{ currentSlide }}<span class="viewed-items__text" ref="slidesText"></span></span>
-      <button type="button" class="viewed-items__button viewed-items__button_right" @click="nextSlide"></button> 
+      <span class="viewed-items__text viewed-items__text_accent">{{ currentSlide }}<span class="viewed-items__text"
+          ref="slidesText"></span></span>
+      <button type="button" class="viewed-items__button viewed-items__button_right" @click="nextSlide"></button>
     </div>
     <div class="viewed-items__swiper">
-    <swiper-container
-      :space-between="20"
-      :slides-per-view="4"
-      @swiperslidechange="currentSlide = Math.ceil(swiperElement.swiper.activeIndex / 4) + 1"
-      ref="swiperElement"
-    >
-      <swiper-slide v-for="item in items" :key="item.name"> 
-        <Slide v-bind="item" />
-      </swiper-slide>
-    </swiper-container>
-  </div>
+      <swiper-container :space-between="20" :slides-per-view="4"
+        @swiperslidechange="currentSlide = Math.ceil(swiperElement.swiper.activeIndex / 4) + 1" ref="swiperElement">
+        <swiper-slide v-for="item in items" :key="item.name">
+          <Slide v-bind="item" />
+        </swiper-slide>
+      </swiper-container>
+    </div>
   </section>
 </template>
 
 <style>
 .viewed-items {
   display: grid;
-  grid-template-areas: "title controller"
-  "swiper swiper";
+  grid-template-areas:
+    "title controller"
+    "swiper swiper";
   grid-template-columns: 1fr max-content;
   row-gap: 42px;
 }
@@ -60,7 +58,6 @@
 
 .viewed-items__button:hover {
   opacity: 0.8;
-
 }
 
 .viewed-items__button_left {
@@ -91,13 +88,11 @@
   grid-area: swiper;
   min-width: 0;
 }
-
-
 </style>
 
 <script setup>
-import {register} from "swiper/element/bundle"
-import {computed, onMounted, ref} from "vue"
+import { register } from "swiper/element/bundle"
+import { computed, onMounted, ref } from "vue"
 import Slide from "./Slide.vue";
 import { useStore } from "vuex";
 
@@ -120,13 +115,13 @@ register()
 
 const nextSlide = () => {
   for (let i = 0; i < slidesPerView; i++) {
-  swiperElement.value.swiper.slideNext()
+    swiperElement.value.swiper.slideNext()
   }
 }
 
 const prevSlide = () => {
   for (let i = 0; i < slidesPerView; i++) {
-  swiperElement.value.swiper.slidePrev()
+    swiperElement.value.swiper.slidePrev()
   }
 }
 </script>

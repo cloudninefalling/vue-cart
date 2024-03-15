@@ -1,11 +1,15 @@
 <template>
   <div class="cart__option">
-    <input type="checkbox" class="cart__option-checkbox" aria-label="Установка" :checked="isSetupNeeded" @change="toggleIsSetupNeeded"/>
+    <input type="checkbox" class="cart__option-checkbox" aria-label="Установка" :checked="isSetupNeeded"
+      @change="toggleIsSetupNeeded" />
 
     <img class="cart__option-image" :src="img" alt="Установка" />
     <div class="cart__option-text-container">
       <p class="cart__option-title">Установка</p>
-      <p class="cart__option-subtitle">Отметьте, если Вам необходима консультация профессионала по монтажу выбранных товаров.</p>
+      <p class="cart__option-subtitle">
+        Отметьте, если Вам необходима консультация профессионала по монтажу
+        выбранных товаров.
+      </p>
     </div>
   </div>
 </template>
@@ -42,8 +46,8 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  width: max-content;
 }
-
 
 .cart__option-title {
   font-weight: 600;
@@ -60,22 +64,18 @@
   line-height: 150%;
   color: #797b86;
 }
-
-
 </style>
 
 <script setup>
-import { useStore } from 'vuex';
-import img from '../assets/option-image.svg'
-import { computed } from 'vue';
+import { useStore } from "vuex";
+import { computed } from "vue";
+import img from "../assets/option-image.svg";
 
 const store = useStore();
 
 const isSetupNeeded = computed(() => store.state.cart.isSetupNeeded);
 
-
 const toggleIsSetupNeeded = () => {
-  store.commit('toggleIsSetupNeeded');
-}
-
+  store.commit("toggleIsSetupNeeded");
+};
 </script>

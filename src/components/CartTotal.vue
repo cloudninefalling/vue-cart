@@ -1,21 +1,37 @@
 <template>
-<div class="cart__total">
-  <p class="cart__total-title">Итого</p>
-  <div class="cart__total-dashboard">
-    <p class="cart__total-text">Сумма заказа</p>
-    <p class="cart__total-text cart__total-text_margin-left-auto">{{ total.toLocaleString("ru-RU") }} ₽</p>
-    <p class="cart__total-text">Количество</p>
-    <p class="cart__total-text cart__total-text_margin-left-auto">{{ count.toLocaleString("ru-RU") }} шт</p>
-    <p class="cart__total-text">Установка</p>
-    <p class="cart__total-text cart__total-text_margin-left-auto">{{isSetupNeeded ? "Да" : "Нет" }}</p>
+  <div class="cart__total">
+    <p class="cart__total-title">Итого</p>
+    <div class="cart__total-dashboard">
+      <p class="cart__total-text">Сумма заказа</p>
+      <p class="cart__total-text cart__total-text_margin-left-auto">
+        {{ total.toLocaleString("ru-RU") }} ₽
+      </p>
+      <p class="cart__total-text">Количество</p>
+      <p class="cart__total-text cart__total-text_margin-left-auto">
+        {{ count.toLocaleString("ru-RU") }} шт
+      </p>
+      <p class="cart__total-text">Установка</p>
+      <p class="cart__total-text cart__total-text_margin-left-auto">
+        {{ isSetupNeeded ? "Да" : "Нет" }}
+      </p>
+    </div>
+    <div class="cart__total-summary">
+      <p class="cart__total-text cart__total-text_size_lg cart__total-item_area_text">
+        Стоимость товаров
+      </p>
+      <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">
+        {{ total.toLocaleString("ru-RU") }} ₽
+      </p>
+      <button :class="{ 'cart__total-button_disabled': isLoading }" type="button"
+        class="cart__total-button cart__total-item_area_button" @click="checkout">
+        Оформить заказ
+      </button>
+      <button :class="{ 'cart__total-button_disabled': isLoading }" type="button"
+        class="cart__total-button cart__total-button_inverted cart__total-item_area_button-secondary" @click="checkout">
+        Купить в 1 клик
+      </button>
+    </div>
   </div>
-  <div class="cart__total-summary">
-    <p class="cart__total-text cart__total-text_size_lg cart__total-item_area_text">Стоимость товаров</p>
-    <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">{{ total.toLocaleString("ru-RU") }} ₽</p>
-    <button type="button" class="cart__total-button cart__total-item_area_button" @click="checkout">Оформить заказ</button>
-    <button type="button" class="cart__total-button cart__total-button_inverted cart__total-item_area_button-secondary" @click="checkout">Купить в 1 клик</button>
-  </div>
-</div>
 </template>
 
 <style scoped>
@@ -30,21 +46,19 @@
   margin-top: -16px;
   margin-bottom: auto;
   width: min-content;
-  }
+}
 
 .cart__total-title {
-font-weight: 600;
-font-size: 24px;
-line-height: 121%;
-margin-bottom: 31px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 121%;
+  margin-bottom: 31px;
 }
 
 .cart__total-dashboard {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   row-gap: 17px;
-  justify-content: space-between;
-  column-gap: 200px;
   border-bottom: 1px solid #aeb0b6;
   padding-bottom: 29px;
 }
@@ -58,15 +72,17 @@ margin-bottom: 31px;
 
 .cart__total-text_margin-left-auto {
   margin-left: auto;
-
+  text-align: right;
+  font-family: var(--second-family);
+  font-weight: 400;
 }
 
 .cart__total-summary {
   display: grid;
-  grid-template-areas: 
-  "name value" 
-  "button button"
-  "button-secondary button-secondary";
+  grid-template-areas:
+    "name value"
+    "button button"
+    "button-secondary button-secondary";
   margin-top: 10px;
 }
 
@@ -99,7 +115,6 @@ margin-bottom: 31px;
   margin-top: 10px;
 }
 
-
 .cart__total-button {
   --color-primary: #0069b4;
   --color-secondary: #fff;
@@ -107,13 +122,15 @@ margin-bottom: 31px;
   font-weight: 600;
   font-size: 18px;
   line-height: 145%;
+  width: max-content;
 
   background-color: var(--color-primary);
   color: var(--color-secondary);
 
-  padding: 14px 40px; 
+  padding: 14px 110px;
   border-radius: 4px;
   border: none;
+  box-sizing: border-box;
 
   transition: opacity 0.2s ease;
   cursor: pointer;
@@ -123,30 +140,50 @@ margin-bottom: 31px;
   opacity: 0.7;
 }
 
-
 .cart__total-button_inverted {
   color: var(--color-primary);
   background-color: var(--color-secondary);
   border: 1px solid #0069b4;
 }
+
+.cart__total-button_disabled {
+  background-color: #aeb0b6;
+  color: #fff;
+  pointer-events: none;
+  border: none;
+}
+
 /* todo extract button to component */
 </style>
 
 <script setup>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useMutation } from "@tanstack/vue-query";
+import axios from "axios";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 
-const store = useStore()
+const store = useStore();
 
-const isSetupNeeded = computed(() => store.state.cart.isSetupNeeded )
-const count = computed(() => store.getters.cartCount )
-const total = computed(() => store.getters.cartTotal )
+const isSetupNeeded = computed(() => store.state.cart.isSetupNeeded);
+const cartInfo = computed(() => store.state.cart);
+const count = computed(() => store.getters.cartCount);
+const total = computed(() => store.getters.cartTotal);
+
+const isLoading = ref(false);
+
+const { mutate } = useMutation({
+  mutationFn: (data) =>
+    axios.post("https://jsonplaceholder.typicode.com/posts", data),
+  onMutate: () => {
+    isLoading.value = true;
+  },
+  onSuccess: (res) => {
+    alert(`Успех! \n${JSON.stringify(res.data, null, 2)}`);
+    isLoading.value = false;
+  },
+});
 
 const checkout = () => {
-  alert("checkout is disabled")
-}
-
-
-
-
+  mutate(cartInfo.value);
+};
 </script>
