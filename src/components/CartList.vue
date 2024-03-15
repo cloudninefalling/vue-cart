@@ -1,20 +1,20 @@
 <template>
   <ul class="cart__list">
-      <li class="cart__list-item" v-for="item in items" :key="item.name">
-        <img class="cart__list-image" :src="item.image" alt="item.name" />
-        <p class="cart__list-name">{{ item.name }}</p>
+    <li class="cart__list-item" v-for="item in items" :key="item.name">
+      <img class="cart__list-image" :src="item.image" alt="item.name" />
+      <p class="cart__list-name">{{ item.name }}</p>
 
-        <p class="cart__list-specs">{{ item.specs.reduce((acc, cur, i) => {
-          if (i < item.specs.length - 1) return acc + cur + " / "
-          return acc + cur
-        }, "").replace(/м3/g, "м³") }}</p>
+      <p class="cart__list-specs">{{ item.specs.reduce((acc, cur, i) => {
+      if (i < item.specs.length - 1) { return acc + cur + " / " } else { return acc + cur }
+    }, ""
+    ).replace(/м3/g, "м³") }}</p>
 
-        <p class="cart__list-item-article">артикул: {{ item.article }}</p>
-        <ItemCounter :item="item" />
-        <p class="cart__list-item-price">{{ item.price.toLocaleString("ru-RU") }}&#8381;</p>
-        <button class="cart__list-item-remove" type="button" @click="remove(item)"></button>
-      </li>
-    </ul>
+          <p class="cart__list-item-article">артикул: {{ item.article }}</p>
+          <ItemCounter :item="item" />
+          <p class="cart__list-item-price">{{ item.price.toLocaleString("ru-RU") }}&#8381;</p>
+          <button class="cart__list-item-remove" type="button" @click="remove(item)"></button>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
@@ -29,14 +29,14 @@
   padding: 0;
   margin: 0;
   margin-bottom: 22px;
-  }
+}
 
 .cart__list-item {
   display: grid;
-  grid-template-areas: 
-  "image name . . remove"
-  "image specs counter price ."
-  "image article counter . .";
+  grid-template-areas:
+    "image name . . remove"
+    "image specs counter price ."
+    "image article counter . .";
   border-bottom: 1px solid #C4C4C4;
   grid-template-columns: min-content minmax(min-content, 270px) 2fr 1fr min-content;
   grid-template-rows: min-content auto 1fr;
@@ -91,7 +91,7 @@
   line-height: 145%;
   text-align: center;
   font-family: var(--second-family);
-  margin-block: auto 
+  margin-block: auto
 }
 
 .cart__list-item-remove {
@@ -101,19 +101,18 @@
   background-size: contain;
   border: none;
 
-  width: 12px;
-  aspect-ratio: 1;
-  margin: 0;
+  width: 14px;
+  height: 14px;
+  margin: 0 5px;
 
   cursor: pointer;
   transition: opacity 0.2s ease;
+  padding: 0;
 }
 
 .cart__list-item-remove:hover {
   opacity: 0.8;
 }
-
-
 </style>
 
 <script setup>
@@ -124,6 +123,6 @@ import ItemCounter from './ItemCounter.vue';
 const store = useStore();
 
 const items = computed(() => store.state.cart.items);
-const remove = (item) => store.commit('removeFromCart', item )
+const remove = (item) => store.commit('removeFromCart', item)
 
 </script>

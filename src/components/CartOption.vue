@@ -20,7 +20,7 @@
   background: #f6f8fa;
   display: flex;
   gap: 20px;
-  padding: 28px 25px;
+  padding: 28px 35px 28px 25px;
   border-radius: 5px;
   margin-top: auto;
   align-items: center;

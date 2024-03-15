@@ -127,7 +127,8 @@
   background-color: var(--color-primary);
   color: var(--color-secondary);
 
-  padding: 14px 110px;
+  padding: 14px 0;
+  width: 365px;
   border-radius: 4px;
   border: none;
   box-sizing: border-box;
