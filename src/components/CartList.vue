@@ -11,7 +11,7 @@
 
           <p class="cart__list-item-article">артикул: {{ item.article }}</p>
           <ItemCounter :item="item" />
-          <p class="cart__list-item-price">{{ item.price.toLocaleString("ru-RU") }}&#8381;</p>
+          <p class="cart__list-item-price">{{ (item.price * item.amount).toLocaleString("ru-RU") }}&#8381;</p>
           <button class="cart__list-item-remove" type="button" @click="remove(item)"></button>
     </li>
   </ul>
