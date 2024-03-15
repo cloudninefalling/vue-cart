@@ -1,21 +1,31 @@
 <template>
   <div class="item-counter">
-    <button class="item-counter__item item-counter__button item-counter__button_bg_minus" @click="removeOneItem(item)"></button>
-    <p class="item-counter__item">{{ item.amount }}</p>
-    <button class="item-counter__item item-counter__button item-counter__button_bg_plus" @click="addItem(item)"></button>
-</div>
+    <div class="item-counter__button-container">
+      <button class="item-counter__item item-counter__button item-counter__button_bg_minus" @click="removeOneItem(item)"></button>
+      <p class="item-counter__item">{{ item.amount }}</p>
+      <button class="item-counter__item item-counter__button item-counter__button_bg_plus" @click="addItem(item)"></button>
+    </div>
+    <p :class="{'item-counter__subscript_transparent': item.amount < 2}" class="item-counter__subscript">{{ item.price.toLocaleString("ru-RU") }} ₽/шт.</p>
+  </div>
 </template>
 
 <style scoped>
   .item-counter {
     grid-area: counter;
     display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 auto;
+  }
+
+  .item-counter__button-container {
+    display: flex;
     gap: 2px;
     border-radius: 4px;
     overflow: hidden;
     height: min-content;
-    margin: auto;
   }
+
 
   .item-counter__item {
     height: 34px;
@@ -51,9 +61,19 @@
     background-image: url("../assets/plus.svg");
   }
 
+  .item-counter__subscript {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 145%;
+    text-align: center;
+    color: #1f2432;
+  }
 
-
-
+  .item-counter__subscript_transparent {
+    color: transparent;
+    pointer-events: none;
+  }
 
 </style>
 

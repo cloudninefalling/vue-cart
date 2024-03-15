@@ -28,7 +28,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-bottom: 44px;
+  margin-bottom: 22px;
   }
 
 .cart__list-item {
@@ -36,10 +36,10 @@
   grid-template-areas: 
   "image name . . remove"
   "image specs counter price ."
-  "image article . . .";
+  "image article counter . .";
   border-bottom: 1px solid #C4C4C4;
-  grid-template-columns: min-content minmax(min-content, 263px) auto auto min-content;
-;
+  grid-template-columns: min-content minmax(min-content, 270px) 2fr 1fr min-content;
+  grid-template-rows: min-content auto 1fr;
 }
 
 .cart__list-item:last-of-type {
@@ -51,8 +51,9 @@
   width: 100px;
   aspect-ratio: 1;
   margin-left: 15px;
-  margin-bottom: 21px;
   object-fit: contain;
+  margin-right: 31px;
+  margin-bottom: 20px;
 }
 
 .cart__list-name {
@@ -60,8 +61,8 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 145%;
-  margin: 0;
   margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .cart__list-specs {
@@ -70,6 +71,8 @@
   font-size: 12px;
   line-height: 150%;
   color: #2c3242;
+  margin-right: 10px;
+  margin-bottom: 6px;
 }
 
 .cart__list-item-article {
@@ -88,6 +91,7 @@
   line-height: 145%;
   text-align: center;
   font-family: var(--second-family);
+  margin-block: auto 
 }
 
 .cart__list-item-remove {
@@ -99,7 +103,7 @@
 
   width: 12px;
   aspect-ratio: 1;
-  margin: 2px 6px 0 0;
+  margin: 0;
 
   cursor: pointer;
   transition: opacity 0.2s ease;

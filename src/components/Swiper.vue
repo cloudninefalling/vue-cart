@@ -27,7 +27,7 @@
   grid-template-areas: "title controller"
   "swiper swiper";
   grid-template-columns: 1fr max-content;
-  row-gap: 60px;
+  row-gap: 42px;
 }
 
 .viewed-items__title {
@@ -83,6 +83,7 @@
   font-size: 24px;
   line-height: 150%;
   color: #212121;
+  margin-left: 5px;
 }
 
 

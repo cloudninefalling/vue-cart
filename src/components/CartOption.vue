@@ -15,7 +15,7 @@
   grid-area: option;
   background: #f6f8fa;
   display: flex;
-  gap: 30px;
+  gap: 20px;
   padding: 28px 25px;
   border-radius: 5px;
   margin-top: auto;
@@ -27,6 +27,7 @@
   height: 20px;
   cursor: pointer;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .cart__option-image {
@@ -52,12 +53,12 @@
   text-align: start;
 }
 
-.cart__option__subtitle {
+.cart__option-subtitle {
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
   color: #797b86;
-  text-align: start;
 }
 
 

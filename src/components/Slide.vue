@@ -1,7 +1,7 @@
 <template>
   <div class="slide">
     <img class="slide__image" :src="image" :alt="name" />
-    <p class="slide__title">{{ name  }}</p>
+    <p class="slide__title">{{ name.replace(/[^A-Za-z0-9 ]+/g, '')  }}</p>
     <p class="slide__description">{{ description }}</p>
     <p class="slide__price">{{ priceRange.rub[0].toLocaleString("ru-RU") }} ₽ – {{ priceRange.rub[1].toLocaleString("ru-RU") }} ₽</p>
     <p class="slide__alt-price">{{ priceRange.euro[0] }} € – {{ priceRange.euro[1] }} €</p>
@@ -45,6 +45,7 @@
   }
 
   .slide__price {
+    font-family: var(--second-family);
     font-weight: 500;
     font-size: 22px;
     line-height: 130%;

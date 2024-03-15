@@ -74,7 +74,7 @@ import CartList from './CartList.vue';
 import CartTotal from './CartTotal.vue';
 import CartOption from './CartOption.vue';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 
 const store = useStore();
 

@@ -11,7 +11,7 @@
   </div>
   <div class="cart__total-summary">
     <p class="cart__total-text cart__total-text_size_lg cart__total-item_area_text">Стоимость товаров</p>
-    <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">{{ total.toLocaleString("ru-RU") }}</p>
+    <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">{{ total.toLocaleString("ru-RU") }} ₽</p>
     <button type="button" class="cart__total-button cart__total-item_area_button" @click="checkout">Оформить заказ</button>
     <button type="button" class="cart__total-button cart__total-button_inverted cart__total-item_area_button-secondary" @click="checkout">Купить в 1 клик</button>
   </div>
@@ -27,7 +27,9 @@
   flex-direction: column;
   padding: 35px 30px;
   box-sizing: border-box;
+  margin-top: -16px;
   margin-bottom: auto;
+  width: min-content;
   }
 
 .cart__total-title {
@@ -39,7 +41,7 @@ margin-bottom: 31px;
 
 .cart__total-dashboard {
   display: grid;
-  grid-template-columns: max-content max-content;
+  grid-template-columns: 1fr 1fr;
   row-gap: 17px;
   justify-content: space-between;
   column-gap: 200px;
@@ -51,6 +53,7 @@ margin-bottom: 31px;
   font-weight: 500;
   font-size: 16px;
   line-height: 145%;
+  width: max-content;
 }
 
 .cart__total-text_margin-left-auto {
@@ -71,6 +74,7 @@ margin-bottom: 31px;
   font-weight: 600;
   font-size: 18px;
   line-height: 145%;
+  margin-block: auto;
 }
 
 .cart__total-text_size_xl {
@@ -78,7 +82,7 @@ margin-bottom: 31px;
   font-size: 26px;
   line-height: 130%;
   letter-spacing: 0.01em;
-  text-align: right;
+  margin-left: auto;
 }
 
 .cart__total-item_area_text {
