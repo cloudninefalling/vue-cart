@@ -59,6 +59,12 @@ export default createStore({
           article: "G2H1065",
           price: 12644,
           image: imgG2h,
+          description:
+            "Вытяжное устройство для механической системы вентиляции",
+          priceRange: {
+            rub: [6848, 56584],
+            euro: [77.6, 643.86],
+          },
         },
         {
           name: "Вытяжное устройство BXC",
@@ -70,6 +76,12 @@ export default createStore({
           article: "G2H1065",
           price: 12644,
           image: imgBxc,
+          description:
+            "Многофункциональное вытяжное устройство для естественной и гибридной вентиляции",
+          priceRange: {
+            rub: [6848, 56584],
+            euro: [77.6, 643.86],
+          },
         },
         {
           name: "Вытяжное устройство GHN",
@@ -81,6 +93,11 @@ export default createStore({
           article: "G2H1065",
           price: 12644,
           image: imgGhn,
+          description: "Вытяжное устройство с датчиком присутствия",
+          priceRange: {
+            rub: [6848, 56584],
+            euro: [77.6, 643.86],
+          },
         },
         {
           name: "Вытяжное устройство TDA",
@@ -92,11 +109,19 @@ export default createStore({
           article: "G2H1065",
           price: 12644,
           image: imgTda,
+          description: "Вытяжное устройство с датчиком присутствия",
+          priceRange: {
+            rub: [6848, 56584],
+            euro: [77.6, 643.86],
+          },
         },
       ],
     };
   },
   getters: {
+    catalog: (state) => {
+      return state.catalog;
+    },
     cartTotal: (state) => {
       if (!state.cart.items.length) return 0;
       return state.cart.items.reduce(

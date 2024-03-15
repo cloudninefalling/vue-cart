@@ -12,7 +12,7 @@
         <p class="cart__list-item-article">артикул: {{ item.article }}</p>
         <p class="cart__list-counter"></p>
         <!-- todo make counter button -->
-        <p class="cart__list-item-price">{{ item.price }}&#8381;</p>
+        <p class="cart__list-item-price">{{ item.price.toLocaleString("ru-RU") }}&#8381;</p>
         <button class="cart__list-item-remove" type="button" @click="remove(item)"></button>
       </li>
     </ul>

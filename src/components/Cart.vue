@@ -1,14 +1,13 @@
 <template>
   <section class="cart">
     <div class="cart__heading">
-      <h1 class="cart__heading-title">Ваша корзина</h1>
+      <h2 class="cart__heading-title">Ваша корзина</h2>
       <p class="cart__heading-subtitle">{{ count }} {{ grammarCheck() }}</p> 
       <button @click="clear" class="cart__heading-button-clear">Очистить корзину</button> 
     </div>
     <CartList />
     <CartOption />
     <CartTotal />
-
   </section>
 </template>
 
@@ -20,6 +19,7 @@
     "items total"
     "option total";
   column-gap: 55px;
+  margin-top: 60px;
 }
 
 .cart__heading {

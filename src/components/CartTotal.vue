@@ -3,15 +3,15 @@
   <p class="cart__total-title">Итого</p>
   <div class="cart__total-dashboard">
     <p class="cart__total-text">Сумма заказа</p>
-    <p class="cart__total-text">{{ total }}₽</p>
+    <p class="cart__total-text cart__total-text_margin-left-auto">{{ total.toLocaleString("ru-RU") }}₽</p>
     <p class="cart__total-text">Количество</p>
-    <p class="cart__total-text">{{ count }} шт</p>
+    <p class="cart__total-text cart__total-text_margin-left-auto">{{ count.toLocaleString("ru-RU") }} шт</p>
     <p class="cart__total-text">Установка</p>
-    <p class="cart__total-text">{{isSetupNeeded ? "Да" : "Нет" }}</p>
+    <p class="cart__total-text cart__total-text_margin-left-auto">{{isSetupNeeded ? "Да" : "Нет" }}</p>
   </div>
   <div class="cart__total-summary">
     <p class="cart__total-text cart__total-text_size_lg cart__total-item_area_text">Стоимость товаров</p>
-    <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">{{ total }}</p>
+    <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">{{ total.toLocaleString("ru-RU") }}</p>
     <button type="button" class="cart__total-button cart__total-item_area_button">Оформить заказ</button>
     <button type="button" class="cart__total-button cart__total-button_inverted cart__total-item_area_button-secondary">Купить в 1 клик</button>
   </div>
@@ -51,6 +51,11 @@ margin-bottom: 31px;
   font-weight: 500;
   font-size: 16px;
   line-height: 145%;
+}
+
+.cart__total-text_margin-left-auto {
+  margin-left: auto;
+
 }
 
 .cart__total-summary {
