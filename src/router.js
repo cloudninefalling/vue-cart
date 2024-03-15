@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CartView from "./pages/CartView.vue";
+import CartView from "./views/CartView.vue";
 
 const routes = [{ path: "/", component: CartView }];
 
