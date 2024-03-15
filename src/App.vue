@@ -1,6 +1,4 @@
 <script setup>
-import Cart from './components/Cart.vue';
-import Swiper from './components/Swiper.vue';
 import Header from './components/Header.vue';
 </script>
 
@@ -12,8 +10,7 @@ import Header from './components/Header.vue';
     <RouterLink class="nav__link nav__link_inactive" to="/">Корзина</RouterLink>
   </nav>
   <main class="main">
-    <Cart />
-    <Swiper />
+    <RouterView />
   </main>
 </template>
 

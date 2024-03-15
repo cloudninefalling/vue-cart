@@ -1,11 +1,10 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+import CartView from "./pages/CartView.vue";
 
-import App from "./App.vue";
-
-const routes = [{ path: "/", component: App }];
+const routes = [{ path: "/", component: CartView }];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
