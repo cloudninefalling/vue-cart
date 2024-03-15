@@ -1,6 +1,6 @@
 <template>
   <ul class="cart__list">
-      <li class="cart__list-item" v-for="item in items">
+      <li class="cart__list-item" v-for="item in items" :key="item.name">
         <img class="cart__list-image" :src="item.image" alt="item.name" />
         <p class="cart__list-name">{{ item.name }}</p>
 
@@ -10,8 +10,7 @@
         }, "").replace(/м3/g, "м³") }}</p>
 
         <p class="cart__list-item-article">артикул: {{ item.article }}</p>
-        <p class="cart__list-counter"></p>
-        <!-- todo make counter button -->
+        <ItemCounter :item="item" />
         <p class="cart__list-item-price">{{ item.price.toLocaleString("ru-RU") }}&#8381;</p>
         <button class="cart__list-item-remove" type="button" @click="remove(item)"></button>
       </li>
@@ -36,9 +35,11 @@
   display: grid;
   grid-template-areas: 
   "image name . . remove"
-  "image specs amount price ."
+  "image specs counter price ."
   "image article . . .";
   border-bottom: 1px solid #C4C4C4;
+  grid-template-columns: min-content minmax(min-content, 263px) auto auto min-content;
+;
 }
 
 .cart__list-item:last-of-type {
@@ -85,7 +86,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 145%;
-  text-align: right;
+  text-align: center;
   font-family: var(--second-family);
 }
 
@@ -114,9 +115,11 @@
 <script setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import ItemCounter from './ItemCounter.vue';
 
 const store = useStore();
 
 const items = computed(() => store.state.cart.items);
 const remove = (item) => store.commit('removeFromCart', item )
+
 </script>

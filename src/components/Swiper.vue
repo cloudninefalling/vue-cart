@@ -13,7 +13,7 @@
       @swiperslidechange="currentSlide = Math.ceil(swiperElement.swiper.activeIndex / 4) + 1"
       ref="swiperElement"
     >
-      <swiper-slide v-for="item in items"> 
+      <swiper-slide v-for="item in items" :key="item.name"> 
         <Slide v-bind="item" />
       </swiper-slide>
     </swiper-container>
@@ -112,9 +112,7 @@ onMounted(() => {
 
 // get items from store
 const store = useStore();
-
 const items = computed(() => store.state.catalog)
-console.log(items);
 
 // import and configure Swiper
 register()

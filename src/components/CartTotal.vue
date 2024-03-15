@@ -3,7 +3,7 @@
   <p class="cart__total-title">Итого</p>
   <div class="cart__total-dashboard">
     <p class="cart__total-text">Сумма заказа</p>
-    <p class="cart__total-text cart__total-text_margin-left-auto">{{ total.toLocaleString("ru-RU") }}₽</p>
+    <p class="cart__total-text cart__total-text_margin-left-auto">{{ total.toLocaleString("ru-RU") }} ₽</p>
     <p class="cart__total-text">Количество</p>
     <p class="cart__total-text cart__total-text_margin-left-auto">{{ count.toLocaleString("ru-RU") }} шт</p>
     <p class="cart__total-text">Установка</p>
@@ -12,8 +12,8 @@
   <div class="cart__total-summary">
     <p class="cart__total-text cart__total-text_size_lg cart__total-item_area_text">Стоимость товаров</p>
     <p class="cart__total-text cart__total-text_size_xl cart__total-item_area_value">{{ total.toLocaleString("ru-RU") }}</p>
-    <button type="button" class="cart__total-button cart__total-item_area_button">Оформить заказ</button>
-    <button type="button" class="cart__total-button cart__total-button_inverted cart__total-item_area_button-secondary">Купить в 1 клик</button>
+    <button type="button" class="cart__total-button cart__total-item_area_button" @click="checkout">Оформить заказ</button>
+    <button type="button" class="cart__total-button cart__total-button_inverted cart__total-item_area_button-secondary" @click="checkout">Купить в 1 клик</button>
   </div>
 </div>
 </template>
@@ -137,6 +137,11 @@ const store = useStore()
 const isSetupNeeded = computed(() => store.state.cart.isSetupNeeded )
 const count = computed(() => store.getters.cartCount )
 const total = computed(() => store.getters.cartTotal )
+
+const checkout = () => {
+  alert("checkout is disabled")
+}
+
 
 
 

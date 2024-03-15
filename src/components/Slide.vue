@@ -98,8 +98,8 @@
     image: String,
     description: String,
     priceRange: {
-      rub: [Number, Number],
-      euro: [Number, Number],
+      rub: [Number],
+      euro: [Number],
     }
   })
 </script>

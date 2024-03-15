@@ -31,7 +31,7 @@ export default createStore({
             article: "G2H1065",
             price: 12644,
             image: imgBxc,
-            amount: 1,
+            amount: 2,
           },
           {
             name: "Вытяжное устройство GHN",
@@ -130,16 +130,20 @@ export default createStore({
       );
     },
     cartCount: (state) => {
-      return state.cart.items.length ? state.cart.items.length : 0;
+      if (!state.cart.items.length) return 0;
+      return state.cart.items.reduce((acc, item) => acc + item.amount, 0);
     },
   },
   mutations: {
     addToCart(state, item) {
-      if (state.cart.items.includes(item)) {
-        state.cart.items.item.amount++;
-        return;
+      const existingItemIndex = state.cart.items.findIndex(
+        (cartItem) => cartItem.name === item.name
+      );
+      if (existingItemIndex !== -1) {
+        state.cart.items[existingItemIndex].amount++;
+      } else {
+        state.cart.items.push({ ...item, amount: 1 });
       }
-      state.cart.items.push({ ...item, amount: 1 });
     },
     removeOneFromCart(state, item) {
       if (item.amount > 1) {
@@ -147,15 +151,13 @@ export default createStore({
         return;
       }
       state.cart.items = state.cart.items.filter(
-        (cartItem) => cartItem !== item
+        (cartItem) => cartItem.name !== item.name
       );
     },
     removeFromCart(state, item) {
-      console.log(item);
-      state.cart = state.cart.items.filter((cartItem) => {
-        console.log(cartItem);
-        return cartItem.name !== item.name;
-      });
+      state.cart.items = state.cart.items.filter(
+        (cartItem) => cartItem.name !== item.name
+      );
     },
     clearCart(state) {
       state.cart.items = [];
