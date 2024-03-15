@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "vite --port 4000",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "^6.1.1",
     "swiper": "^11.0.7",
     "vue": "^3.4.21",
     "vuex": "^4.0.2"

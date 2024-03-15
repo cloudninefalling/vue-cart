@@ -1,9 +1,11 @@
 <script setup>
 import Cart from './components/Cart.vue';
 import Swiper from './components/Swiper.vue';
+import Header from './components/Header.vue';
 </script>
 
 <template>
+  <!-- <Header /> -->
   <main class="main">
     <Cart />
     <Swiper />
