@@ -179,7 +179,6 @@ const { mutate } = useMutation({
   onSuccess: (res) => {
     let string = ""
     let total = 0;
-    console.log(res.data.items);
     res.data.items.forEach((item, i) => {
       string += `${i + 1}: ${item.name} - ${item.amount} шт. - ${item.price * item.amount} руб. \n`;
       total += item.price * item.amount;
