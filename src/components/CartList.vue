@@ -122,7 +122,7 @@ import ItemCounter from './ItemCounter.vue';
 
 const store = useStore();
 
-const items = computed(() => store.state.cart.items);
-const remove = (item) => store.commit('removeFromCart', item)
+const items = computed(() => store.getters["cart/items"]);
+const remove = (item) => { store.commit('cart/removeFromCart', item) }
 
 </script>

@@ -80,9 +80,9 @@ import CartOption from "./CartOption.vue";
 
 const store = useStore();
 
-const count = computed(() => store.getters.cartCount);
+const count = computed(() => store.getters["cart/cartCount"]);
 const clear = () => {
-  store.commit("clearCart");
+  store.commit("cart/clearCart");
 };
 
 const grammarCheck = computed(() => {

@@ -73,9 +73,9 @@ import img from "../assets/option-image.svg";
 
 const store = useStore();
 
-const isSetupNeeded = computed(() => store.state.cart.isSetupNeeded);
+const isSetupNeeded = computed(() => store.getters["cart/isSetupNeeded"]);
 
 const toggleIsSetupNeeded = () => {
-  store.commit("toggleIsSetupNeeded");
+  store.commit("cart/toggleIsSetupNeeded");
 };
 </script>

@@ -153,8 +153,6 @@
   pointer-events: none;
   border: none;
 }
-
-/* todo extract button to component */
 </style>
 
 <script setup>
@@ -165,10 +163,10 @@ import { useStore } from "vuex";
 
 const store = useStore();
 
-const isSetupNeeded = computed(() => store.state.cart.isSetupNeeded);
+const isSetupNeeded = computed(() => store.getters["cart/isSetupNeeded"]);
 const cartInfo = computed(() => store.state.cart);
-const count = computed(() => store.getters.cartCount);
-const total = computed(() => store.getters.cartTotal);
+const count = computed(() => store.getters["cart/cartCount"]);
+const total = computed(() => store.getters["cart/cartTotal"]);
 
 const isLoading = ref(false);
 

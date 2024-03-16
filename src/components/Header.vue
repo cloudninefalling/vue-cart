@@ -4,7 +4,7 @@
       <div class="header__cart-image"></div>
       <p class="header__cart-title">Ваша корзина</p>
       <p class="header__cart-text header__cart-text_grey">{{ count }} {{ grammarCheck }}</p>
-      <p class="header__cart-text">{{price.toLocaleString("ru-Ru")}} ₽</p>
+      <p class="header__cart-text">{{ price.toLocaleString("ru-Ru") }} ₽</p>
     </div>
   </header>
 </template>
@@ -17,10 +17,10 @@
 
 .header__cart {
   display: grid;
-  grid-template-areas: 
-  "image title"
-  "image text-grey"
-  "image text";
+  grid-template-areas:
+    "image title"
+    "image text-grey"
+    "image text";
   margin: 64px 0 56px;
   column-gap: 10px;
 }
@@ -39,7 +39,7 @@
 
 .header__cart-title {
   grid-area: title;
-  
+
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
@@ -59,8 +59,6 @@
 
   color: #797b86;
 }
-
-
 </style>
 
 <script setup>
@@ -68,11 +66,11 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-const price = computed(() => store.getters.cartTotal);
-const count = computed(() => store.getters.cartCount);
+const price = computed(() => store.getters["cart/cartTotal"]);
+const count = computed(() => store.getters["cart/cartCount"]);
 
 const grammarCheck = computed(() => {
-  if (count.value >= 5 && count.value <= 20 || count.value % 10 === 0 ) return 'товаров';
+  if (count.value >= 5 && count.value <= 20 || count.value % 10 === 0) return 'товаров';
   if (count.value % 10 === 1) return 'товар';
   if (count.value % 10 >= 5) return 'товаров';
   else return 'товара';

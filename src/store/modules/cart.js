@@ -3,6 +3,7 @@ import imgG2h from "../../assets/G2H.png";
 import imgGhn from "../../assets/GHN.png";
 
 const cart = {
+  namespaced: true,
   state: () => ({
     items: [
       {
@@ -45,6 +46,12 @@ const cart = {
     isSetupNeeded: false,
   }),
   getters: {
+    items: (state) => {
+      return state.items;
+    },
+    isSetupNeeded: (state) => {
+      return state.isSetupNeeded;
+    },
     cartTotal: (state) => {
       if (!state.items.length) return 0;
       return state.items.reduce(

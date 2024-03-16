@@ -4,6 +4,7 @@ import imgGhn from "../../assets/GHN.png";
 import imgTda from "../../assets/TDA.png";
 
 const catalog = {
+  namespaced: true,
   state: () => [
     {
       name: "Вытяжное устройство BXC",

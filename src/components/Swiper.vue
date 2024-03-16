@@ -8,10 +8,10 @@
       <button type="button" class="viewed-items__button viewed-items__button_right" @click="nextSlide"></button>
     </div>
     <div class="viewed-items__swiper">
-      <swiper-container :space-between="20" :slides-per-view="4"
-        @swiperslidechange="currentSlide = Math.ceil(swiperElement.swiper.activeIndex / 4) + 1" ref="swiperElement">
+      <swiper-container :space-between="20" :slides-per-view="4" :allowTouchMove="false"
+        @swiperslidechange=" currentSlide = Math.ceil(swiperElement.swiper.activeIndex / 4) + 1" ref="swiperElement">
         <swiper-slide v-for="item in items" :key="item.name">
-          <Slide v-bind="item" />
+          <Slide :item="item" />
         </swiper-slide>
       </swiper-container>
     </div>
@@ -51,6 +51,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 50%;
 
   cursor: pointer;
   transition: opacity 0.2s ease;
