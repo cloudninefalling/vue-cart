@@ -5,7 +5,8 @@
     <p class="slide__description">{{ item.description }}</p>
     <p class="slide__price">{{ item.priceRange.rub[0].toLocaleString("ru-RU") }} ₽ – {{
       item.priceRange.rub[1].toLocaleString("ru-RU") }} ₽</p>
-    <p class="slide__alt-price">{{ item.priceRange.euro[0] }} € – {{ item.priceRange.euro[1] }} €</p>
+    <p class="slide__alt-price">{{ item.priceRange.euro[0].toFixed(2) }} € – {{ item.priceRange.euro[1].toFixed(2) }} €
+    </p>
     <button type="button" class="slide__button" @click="toggleClick">{{ !isClicked ? "Подробнее" : "Скрыть" }}</button>
     <button v-show="isClicked" type="button" class="slide__button" @click="addToCart(item)">В корзину</button>
   </div>
@@ -60,6 +61,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 145%;
+  color: #797b86;
 }
 
 .slide__button {
@@ -98,7 +100,10 @@ const toggleClick = () => { isClicked.value = !isClicked.value }
 
 const store = useStore();
 
-const addToCart = (item) => { store.commit("cart/addToCart", item) };
+const addToCart = (item) => {
+  store.commit("cart/addToCart", item);
+  isClicked.value = false;
+};
 
 const props = defineProps({
   item: {
