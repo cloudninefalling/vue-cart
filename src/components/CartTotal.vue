@@ -177,7 +177,14 @@ const { mutate } = useMutation({
     isLoading.value = true;
   },
   onSuccess: (res) => {
-    alert(`Успех! \n${JSON.stringify(res.data, null, 2)}`);
+    let string = ""
+    let total = 0;
+    console.log(res.data.items);
+    res.data.items.forEach((item, i) => {
+      string += `${i + 1}: ${item.name} - ${item.amount} шт. - ${item.price * item.amount} руб. \n`;
+      total += item.price * item.amount;
+    });
+    alert(`Успех! \n${string} \nУстановка: ${res.data.isSetupNeeded ? "Да" : "Нет"} \n\nИтого: ${total} руб.`);
     isLoading.value = false;
   },
 });
